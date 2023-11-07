@@ -1,26 +1,19 @@
 import React from 'react';
 import { createRandomMovie } from '../data';
+import { useAppSelector } from '../hooks/store/useAppSelector.ts';
+import { useActions } from '../hooks/store/useActions.ts';
 
 const MoviePlaylist: React.FC = () => {
-  // To Do:
-  // Get list of movies
-  const moviePlaylist = [];
+  const moviePlaylist = useAppSelector(state => state.movies);
 
-  const handleMovieAdd = (movie) => {
-    // To Do:
-    // Add movie to list of movies
-  };
-  const handleMovieRemove = (movie) => {
-    // To Do:
-    // Remove movie from list of movies
-  };
+  const { addMovie, deleteMovie } = useActions();
 
   const renderedMovies = moviePlaylist.map((movie) => {
     return (
       <li key={movie}>
         {movie}
         <button
-          onClick={() => handleMovieRemove(movie)}
+          onClick={() => deleteMovie(movie)}
           className="button is-danger"
         >
           X
@@ -35,7 +28,7 @@ const MoviePlaylist: React.FC = () => {
         <h3 className="subtitle is-3">Movie Playlist</h3>
         <div className="buttons">
           <button
-            onClick={() => handleMovieAdd(createRandomMovie())}
+            onClick={() => addMovie(createRandomMovie())}
             className="button is-link"
           >
             + Add Movie to Playlist
