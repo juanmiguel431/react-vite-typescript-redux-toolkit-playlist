@@ -1,6 +1,11 @@
 module.exports = {
   root: true,
   env: { browser: true, es2020: true },
+  settings: {
+    'react': {
+      'version': 'detect'
+    }
+  },
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/strict-type-checked',
@@ -19,6 +24,14 @@ module.exports = {
   },
   plugins: ['react-refresh'],
   rules: {
+    '@typescript-eslint/no-confusing-void-expression': 'off',
+    '@typescript-eslint/no-non-null-assertion': 'warn',
+    '@typescript-eslint/no-empty-function': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-unused-vars': 'off',
+    'react/react-in-jsx-scope': 'off',
+    '@typescript-eslint/consistent-type-definitions': ['type' | 'interface'],
+    '@typescript-eslint/prefer-nullish-coalescing': 'error',
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true },
