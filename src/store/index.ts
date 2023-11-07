@@ -1,14 +1,19 @@
 import { configureStore } from '@reduxjs/toolkit';
 import movieSlice from './slices/movieSlice.ts';
+import songSlice from './slices/songSlice.ts';
+import * as actions from './actions.ts';
 
 export const store = configureStore({
   reducer: {
-    movies: movieSlice.reducer
+    movies: movieSlice.reducer,
+    songs: songSlice.reducer,
   }
 });
 
 export const actionCreators = {
-  ...movieSlice.actions
+  ...movieSlice.actions,
+  ...songSlice.actions,
+  ...actions
 };
 
 //https://react-redux.js.org/using-react-redux/usage-with-typescript#define-root-state-and-dispatch-types

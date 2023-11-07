@@ -1,26 +1,20 @@
 import React from 'react';
 import { createRandomSong } from '../data';
+import { useAppSelector } from '../hooks/store/useAppSelector.ts';
+import { useActions } from '../hooks/store/useActions.ts';
 
 const SongPlaylist: React.FC = () => {
-  // To Do:
-  // Get list of songs
-  const songPlaylist = [];
 
-  const handleSongAdd = (song) => {
-    // To Do:
-    // Add song to list of songs
-  };
-  const handleSongRemove = (song) => {
-    // To Do:
-    // Remove song from list of songs
-  };
+  const songPlaylist = useAppSelector(state => state.songs);
+
+  const { addSong, deleteSong } = useActions();
 
   const renderedSongs = songPlaylist.map((song) => {
     return (
       <li key={song}>
         {song}
         <button
-          onClick={() => handleSongRemove(song)}
+          onClick={() => deleteSong(song)}
           className="button is-danger"
         >
           X
@@ -35,7 +29,7 @@ const SongPlaylist: React.FC = () => {
         <h3 className="subtitle is-3">Song Playlist</h3>
         <div className="buttons">
           <button
-            onClick={() => handleSongAdd(createRandomSong())}
+            onClick={() => addSong(createRandomSong())}
             className="button is-link"
           >
             + Add Song to Playlist
